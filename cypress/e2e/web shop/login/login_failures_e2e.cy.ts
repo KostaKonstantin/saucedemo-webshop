@@ -20,7 +20,7 @@ describe("Login Page Negative E2E Test", () => {
     expect(loginPage.url).to.include("https://www.saucedemo.com/");
   });
 
-  it("Should Not Be Able to Login In With False Username And Password", () => {
+  it("Should Not Be Able to Login With False Username And Password", () => {
     //ARRANGE
     loginPage.userNameInput().type(mockInvalidUser.userName);
     loginPage.passwordInput().type(mockInvalidUser.password);
@@ -39,7 +39,7 @@ describe("Login Page Negative E2E Test", () => {
     expect(loginPage.url).to.include("https://www.saucedemo.com/");
   });
 
-  it("Should Throw An Error When Logging In With Out Password", () => {
+  it("Should Throw An Error When Logging In Without Password", () => {
     //ARRANGE
     loginPage.userNameInput().type(mockValidUser.userName);
 
@@ -69,7 +69,7 @@ describe("Login Page Negative E2E Test", () => {
     expect(loginPage.url).to.include("https://www.saucedemo.com/");
   });
 
-  it("Should Not Be Able to Log In As Locked User", () => {
+  it("Should Not Be Able to Login As Locked User", () => {
     //ARRANGE
     loginPage.userNameInput().type(mockLockedUser.userName);
     loginPage.passwordInput().type(mockLockedUser.password);
