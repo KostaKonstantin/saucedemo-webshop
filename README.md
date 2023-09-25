@@ -4,14 +4,14 @@ This repository contains a suite of Cypress end-to-end (e2e) tests for the Swag 
 ## Prerequisites
 To run the tests, ensure you have the following prerequisites installed:
 
-- Node.js (Version 16.x/18.x/20.x)
-- Cypress (Version 12.x)
+- `Node.js (Version 16.x/18.x/20.x)`
+- `Cypress (Version 12.x)`
 
 ## Installation
 1. Clone this repository to your local machine:
-2. Navigate to the saucedemo-webshop directory -> cd .\saucedemo-webshop\
-3. Install the required dependencies with -> npm install
-4. Run the tests with -> node_modules/.bin/cypress open
+2. Navigate to the saucedemo-webshop directory -> `cd .\saucedemo-webshop\`
+3. Install the required dependencies with -> `npm install`
+4. Run the tests with -> `node_modules/.bin/cypress open`
 
 ## Project Structure
     saucedemo-webshop/ - Main directory
