@@ -1,4 +1,3 @@
-import { mockValidUser } from "../mock-user/mock-valid-user";
 import "../../../support/commands";
 import { mainPage } from "../pages/mainPage";
 import { cartPage } from "../pages/cart";
@@ -71,7 +70,18 @@ describe("Products Standard User E2E Test", () => {
       "Names should not change after sorting"
     );
   });
+  it("Should Reset App State When Clicking On It", () => {
+    //ARRANGE AND ASSERT
+    mainPage.addToCartOnesie().click();
+    mainPage.shoppingCartNumber().should("be.visible").and("have.text", "1");
 
+    //ACT
+    mainPage.sideMenuButton().click();
+    mainPage.resetAppState().click();
+
+    //ASSERT
+    mainPage.shoppingCartNumber().should("not.exist");
+  });
   it("Should Display Remove Button When Trying To Add A Product To The Cart", () => {
     //ACT
     mainPage.addToCartOnesie().click();
@@ -138,5 +148,20 @@ describe("Products Standard User E2E Test", () => {
     expect(checkoutPage.url).to.contain(
       "https://www.saucedemo.com/checkout-step-one.html"
     );
+  });
+  it("Should Return The User To The Main Page When Cancelling The Order", () => {
+    //ARRANGE
+    mainPage.addToCartOnesie().click();
+    mainPage.shoppingCartLink().click();
+    cartPage.checkOutButton().click();
+
+    //ACT
+    checkoutPage.firstNameInput().type("Joe");
+    checkoutPage.lastNameInput().type("Doe");
+    checkoutPage.postalCodeInput().type("24000");
+    checkoutPage.cancelButton().click();
+
+    //ASSERT
+    expect(mainPage.url).to.contain("https://www.saucedemo.com/inventory.html");
   });
 });

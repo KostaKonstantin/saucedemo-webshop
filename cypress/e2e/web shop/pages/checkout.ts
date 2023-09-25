@@ -1,5 +1,5 @@
 class CheckoutPage {
-  url = 'https://www.saucedemo.com/checkout-step-one.html'
+  url = "https://www.saucedemo.com/checkout-step-one.html";
   firstNameInput() {
     return cy.get('[data-test="firstName"]');
   }
@@ -30,6 +30,10 @@ class CheckoutPage {
 
   errorContainer() {
     return cy.get('[data-test="error"]');
+  }
+
+  cancelButton() {
+    return cy.get('[data-test="cancel"]');
   }
 }
 

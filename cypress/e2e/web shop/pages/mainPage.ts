@@ -56,6 +56,10 @@ class MainPage {
   shoppingCartLink() {
     return cy.get('.shopping_cart_link')
   }
+
+  resetAppState() {
+    return cy.get('#reset_sidebar_link')
+  }
 }
 
 export const mainPage = new MainPage();

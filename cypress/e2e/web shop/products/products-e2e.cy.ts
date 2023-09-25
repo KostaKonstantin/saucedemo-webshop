@@ -102,6 +102,19 @@ describe("Products Standard User E2E Test", () => {
       });
   });
 
+  it("Should Reset App State When Clicking On It", () => {
+    //ARRANGE AND ASSERT
+    mainPage.addToCartOnesie().click();
+    mainPage.shoppingCartNumber().should("be.visible").and("have.text", "1");
+
+    //ACT
+    mainPage.sideMenuButton().click();
+    mainPage.resetAppState().click();
+
+    //ASSERT
+    mainPage.shoppingCartNumber().should("not.exist");
+  });
+
   it("Should Display Remove Button When Trying To Add A Product To The Cart", () => {
     //ACT
     mainPage.addToCartOnesie().click();
@@ -166,6 +179,22 @@ describe("Products Standard User E2E Test", () => {
       .checkoutContainer()
       .should("be.visible")
       .and("contain", "Thank you for your order!");
-     checkoutPage.backHomeButton().should('be.visible') 
+    checkoutPage.backHomeButton().should("be.visible");
+  });
+
+  it("Should Return The User To The Main Page When Cancelling The Order", () => {
+    //ARRANGE
+    mainPage.addToCartOnesie().click();
+    mainPage.shoppingCartLink().click();
+    cartPage.checkOutButton().click();
+
+    //ACT
+    checkoutPage.firstNameInput().type("Joe");
+    checkoutPage.lastNameInput().type("Doe");
+    checkoutPage.postalCodeInput().type("24000");
+    checkoutPage.cancelButton().click();
+
+    //ASSERT
+    expect(mainPage.url).to.contain("https://www.saucedemo.com/inventory.html");
   });
 });
