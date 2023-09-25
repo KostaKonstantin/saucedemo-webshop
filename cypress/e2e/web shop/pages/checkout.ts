@@ -1,4 +1,5 @@
 class CheckoutPage {
+  url = 'https://www.saucedemo.com/checkout-step-one.html'
   firstNameInput() {
     return cy.get('[data-test="firstName"]');
   }
@@ -25,6 +26,10 @@ class CheckoutPage {
 
   backHomeButton() {
     return cy.get('[data-test="back-to-products"]');
+  }
+
+  errorContainer() {
+    return cy.get('[data-test="error"]');
   }
 }
 
