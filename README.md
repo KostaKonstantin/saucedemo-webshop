@@ -15,16 +15,16 @@ To run the tests, ensure you have the following prerequisites installed:
 
 ## Project Structure
     saucedemo-webshop/ - Main directory
-    cypress/ - Contains the Cypress test files and configuration.
-        e2e/ - Contains Web Shop Folder.
-        web shop/ - Contains all the main structure of e2e tests.
-        login/ - Contains login e2e tests.
-        mock-user/ - Contains mocked users that are used through out the test.
-        pages/ - Contains all of the pages from the website.
-        products/ - Contains products e2e tests.
-    support/ - Shared utility functions and custom commands.
-    cypress.json - Cypress configuration file.
-    package.json - Node.js project configuration.
+        cypress/ - Contains the Cypress test files and configuration.
+            e2e/ - Contains Web Shop Folder.
+                web shop/ - Contains all the main structure of e2e tests.
+                    login/ - Contains login e2e tests.
+                    mock-user/ - Contains mocked users that are used through out the test.
+                    pages/ - Contains all of the pages from the website.
+                    products/ - Contains products e2e tests.
+            support/ - Shared utility functions and custom commands.
+            cypress.json - Cypress configuration file.
+            package.json - Node.js project configuration.
 
 ## Test Coverage
 This test suite covers the following parts of the Swag Labs demo app:
