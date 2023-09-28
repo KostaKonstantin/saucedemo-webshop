@@ -1,1 +1,17 @@
-node_modules
+# Ignore node_modules (Cypress dependencies)
+node_modules/
+
+# Ignore Cypress binary cache
+.cypress/
+
+# Ignore Cypress videos and screenshots
+/cypress/videos/
+/cypress/screenshots/
+
+# Ignore Cypress configuration files
+cypress.json
+cypress.env.json
+
+# Ignore generated report files (if using a reporter that generates files)
+mochawesome-report/
+report.html
