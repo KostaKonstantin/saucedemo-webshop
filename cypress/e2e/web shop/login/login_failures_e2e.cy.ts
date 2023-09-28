@@ -9,79 +9,61 @@ describe("Login Page Negative E2E Test", () => {
   });
 
   it("Should Throw An Error When Logging In With Empty Fields", () => {
-    //ACT
+    // ACT
     loginPage.loginButton().click();
 
-    //ASSERT
-    loginPage
-      .errorPopUp()
-      .should("be.visible")
-      .and("have.text", "Epic sadface: Username is required");
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    // ASSERT
+    loginPage.assertErrorPopUpText("Epic sadface: Username is required");
+    loginPage.assertUrl("https://www.saucedemo.com/");
   });
 
   it("Should Not Be Able to Login With False Username And Password", () => {
-    //ARRANGE
-    loginPage.userNameInput().type(mockInvalidUser.userName);
-    loginPage.passwordInput().type(mockInvalidUser.password);
+    // ARRANGE
+    loginPage.loginFormCredentials(mockInvalidUser.userName, mockInvalidUser.password);
 
-    //ACT
+    // ACT
     loginPage.loginButton().click();
 
-    //ASSERT
-    loginPage
-      .errorPopUp()
-      .should("be.visible")
-      .and(
-        "have.text",
-        "Epic sadface: Username and password do not match any user in this service"
-      );
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    // ASSERT
+    loginPage.assertErrorPopUpText(
+      "Epic sadface: Username and password do not match any user in this service"
+    );
+    loginPage.assertUrl("https://www.saucedemo.com/");
   });
 
   it("Should Throw An Error When Logging In Without Password", () => {
-    //ARRANGE
+    // ARRANGE
     loginPage.userNameInput().type(mockValidUser.userName);
 
-    //ACT
+    // ACT
     loginPage.loginButton().click();
 
-    //ASSERT
-    loginPage
-      .errorPopUp()
-      .should("be.visible")
-      .and("have.text", "Epic sadface: Password is required");
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    // ASSERT
+    loginPage.assertErrorPopUpText("Epic sadface: Password is required");
+    loginPage.assertUrl("https://www.saucedemo.com/");
   });
 
   it("Should Throw An Error When Logging In With Out Username", () => {
-    //ARRANGE
+    // ARRANGE
     loginPage.passwordInput().type(mockValidUser.password);
 
-    //ACT
+    // ACT
     loginPage.loginButton().click();
 
-    //ASSERT
-    loginPage
-      .errorPopUp()
-      .should("be.visible")
-      .and("have.text", "Epic sadface: Username is required");
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    // ASSERT
+    loginPage.assertErrorPopUpText("Epic sadface: Username is required");
+    loginPage.assertUrl("https://www.saucedemo.com/");
   });
 
   it("Should Not Be Able to Login As Locked User", () => {
-    //ARRANGE
-    loginPage.userNameInput().type(mockLockedUser.userName);
-    loginPage.passwordInput().type(mockLockedUser.password);
+    // ARRANGE
+    loginPage.loginFormCredentials(mockLockedUser.userName, mockLockedUser.password);
 
-    //ACT
+    // ACT
     loginPage.loginButton().click();
 
-    //ASSERT
-    loginPage
-      .errorPopUp()
-      .should("be.visible")
-      .and("have.text", "Epic sadface: Sorry, this user has been locked out.");
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    // ASSERT
+    loginPage.assertErrorPopUpText("Epic sadface: Sorry, this user has been locked out.");
+    loginPage.assertUrl("https://www.saucedemo.com/");
   });
 });

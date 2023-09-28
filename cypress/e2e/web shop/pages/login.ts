@@ -51,6 +51,25 @@ class LoginPage {
   assertLogoutSuccess() {
     expect(loginPage.url).to.include("https://www.saucedemo.com/");
   }
+
+  // Custom method to assert error pop-up text
+  assertErrorPopUpText(errorText: string) {
+    loginPage.errorPopUp().should("be.visible").and("have.text", errorText);
+  }
+
+  // Custom method to assert the current URL
+  assertUrl(expectedUrl: string) {
+    expect(loginPage.url).to.include(expectedUrl);
+  }
+
+  // Custom method to assert the existence of main UI elements
+  assertMainUIElementsVisibility() {
+    this.loginLogo().should("have.text", "Swag Labs").and("exist");
+    this.userNameInput().should("exist");
+    this.passwordInput().should("exist");
+    this.loginButton().should("exist");
+    this.loginCredentials().should("exist");
+  }
 }
 
 export const loginPage = new LoginPage();
