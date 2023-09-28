@@ -11,95 +11,35 @@ describe("Products Standard User E2E Test", () => {
 
   it("Should Display Products On The Page", () => {
     //ASSERT
-    mainPage.inventoryContainer().should("be.visible");
-    mainPage.productSortContainer().should("be.visible");
-    mainPage.inventoryItem().should("have.length", 6);
+    mainPage.assertProductDisplay();
   });
 
   it("Should Display 6 Item Names, Images, Descriptions, Prices And Add To Cart Buttons", () => {
     //ASSERT
-    mainPage.inventoryItemName().should("have.length", 6);
-    mainPage.inventoryItemDesc().should("have.length", 6);
-    mainPage.inventoryItemPrices().should("have.length", 6);
-    mainPage.inventoryAddButton().should("have.length", 6);
+    mainPage.assertItemDetails();
   });
 
   it("Should Successfully Sort With Every Sort Value", () => {
-    /*Sort Lower To Higher Price*/
-    //ACT
-    mainPage.productSortContainer().select("lohi");
+    //ACT AND ASSERT
+    // Custom method to get and assert sorted prices (low to high)
+    mainPage.selectSortOption("lohi");
 
-    mainPage
-      .inventoryItemPrices()
-      .invoke("text")
-      .then((pricesText) => {
-        const prices: number[] = pricesText
-          .split("\n")
-          .map((priceStr) => parseFloat(priceStr.replace("$", "")));
-        const sortedPrices = [...prices].sort((a, b) => a - b);
+    mainPage.assertPricesSortedLowToHigh();
 
-        //ASSERT
-        expect(prices).to.deep.equal(
-          sortedPrices,
-          "Prices should be sorted from low to high"
-        );
-      });
+    // Custom method to get and assert sorted prices (high to low)
+    mainPage.selectSortOption("hilo");
 
-    /*Sort Higher To Lower Price*/
-    //ACT
-    mainPage.productSortContainer().select("hilo");
+    mainPage.assertPricesSortedHighToLow();
 
-    mainPage
-      .inventoryItemPrices()
-      .invoke("text")
-      .then((pricesText) => {
-        const prices: number[] = pricesText
-          .split("\n")
-          .map((priceStr) => parseFloat(priceStr.replace("$", "")));
-        const sortedPrices = [...prices].sort((a, b) => b - a);
+    // Custom method to get and assert sorted item names (A to Z)
+    mainPage.selectSortOption("az");
 
-        //ASSERT
-        expect(prices).to.deep.equal(
-          sortedPrices,
-          "Prices should be sorted from high to low"
-        );
-      });
+    mainPage.assertNamesSortedAToZ();
 
-    /*Sort A To Z*/
-    //ACT
-    mainPage.productSortContainer().select("az");
+    // Custom method to get and assert sorted item names (Z to A)
+    mainPage.selectSortOption("za");
 
-    mainPage
-      .inventoryItemName()
-      .invoke("text")
-      .then((namesText) => {
-        const names: string[] = namesText.split("\n");
-        const sortedNames = [...names].sort((a, b) => a.localeCompare(b));
-
-        //ASSERT
-        expect(names).to.deep.equal(
-          sortedNames,
-          "Inventory items should be sorted from A to Z"
-        );
-      });
-
-    /*Sort Z To A*/
-    //ACT
-    mainPage.productSortContainer().select("az");
-
-    mainPage
-      .inventoryItemName()
-      .invoke("text")
-      .then((namesText) => {
-        const names: string[] = namesText.split("\n");
-        const sortedNames = [...names].sort((a, b) => a.localeCompare(b));
-
-        //ASSERT
-        expect(names).to.deep.equal(
-          sortedNames,
-          "Inventory items should be sorted from A to Z"
-        );
-      });
+    mainPage.assertNamesSortedZToA();
   });
 
   it("Should Reset App State When Clicking On It", () => {
@@ -130,12 +70,7 @@ describe("Products Standard User E2E Test", () => {
     mainPage.shoppingCartLink().click();
 
     //ASSERT
-    cartPage.cartList().should("be.visible");
-    cartPage.cartList().should("contain", "Sauce Labs Onesie");
-    cartPage.cartList().should("contain", "7.99");
-    cartPage.checkOutButton().should("be.visible");
-    cartPage.continueShoppingButton().should("be.visible");
-    cartPage.removeButton().should("be.visible");
+    cartPage.assertCartElements();
   });
 
   it("Should Successfully Remove An Item From The Cart Page", () => {
@@ -155,10 +90,7 @@ describe("Products Standard User E2E Test", () => {
     cartPage.checkOutButton().click();
 
     //ASSERT
-    checkoutPage.firstNameInput().should("be.visible");
-    checkoutPage.lastNameInput().should("be.visible");
-    checkoutPage.postalCodeInput().should("be.visible");
-    checkoutPage.continueButton().should("be.visible");
+    checkoutPage.assertCheckoutFormElements();
   });
 
   it("Should Successfully Checkout With A Selected Item", () => {

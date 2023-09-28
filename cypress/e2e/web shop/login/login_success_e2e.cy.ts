@@ -12,14 +12,10 @@ describe("Login Page Positive E2E Test", () => {
 
   it("Should Display Main UI Elements On The Page", () => {
     //ASSERT
-    loginPage.loginLogo().should("have.text", "Swag Labs").and("exist");
-    loginPage.userNameInput().should("exist");
-    loginPage.passwordInput().should("exist");
-    loginPage.loginButton().should("exist");
-    loginPage.loginCredentials().should("exist");
+    loginPage.assertMainUIElementsVisibility();
   });
 
-  it.only("Should Be Able Log In With Valid Credentials", () => {
+  it("Should Be Able Log In With Valid Credentials", () => {
     //ACT
     loginPage.loginFormCredentials(
       mockValidUser.userName,

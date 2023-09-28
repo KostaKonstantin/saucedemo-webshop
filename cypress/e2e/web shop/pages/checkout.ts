@@ -39,16 +39,24 @@ class CheckoutPage {
     return cy.get('[data-test="cancel"]');
   }
 
-  // Method to fill out the checkout form
+  // Custom method to fill out the checkout form
   fillOutCheckoutForm(firstName: string, lastName: string, postalCode: string) {
     this.firstNameInput().type(firstName);
     this.lastNameInput().type(lastName);
     this.postalCodeInput().type(postalCode);
   }
 
-  // Method to cancel the checkout process
+  // Custom method to cancel the checkout process
   cancelCheckout() {
     this.cancelButton().click();
+  }
+
+  // Custom method to assert the visibility of checkout form elements
+  assertCheckoutFormElements() {
+    this.firstNameInput().should("be.visible");
+    this.lastNameInput().should("be.visible");
+    this.postalCodeInput().should("be.visible");
+    this.continueButton().should("be.visible");
   }
 }
 
