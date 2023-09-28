@@ -168,9 +168,7 @@ describe("Products Standard User E2E Test", () => {
     cartPage.checkOutButton().click();
 
     //ACT
-    checkoutPage.firstNameInput().type("Joe");
-    checkoutPage.lastNameInput().type("Doe");
-    checkoutPage.postalCodeInput().type("24000");
+    checkoutPage.fillOutCheckoutForm("Joe", "Doe", "24000");
     checkoutPage.continueButton().click();
     checkoutPage.finishButton().click();
 
@@ -189,10 +187,8 @@ describe("Products Standard User E2E Test", () => {
     cartPage.checkOutButton().click();
 
     //ACT
-    checkoutPage.firstNameInput().type("Joe");
-    checkoutPage.lastNameInput().type("Doe");
-    checkoutPage.postalCodeInput().type("24000");
-    checkoutPage.cancelButton().click();
+    checkoutPage.fillOutCheckoutForm("Joe", "Doe", "24000");
+    checkoutPage.cancelCheckout();
 
     //ASSERT
     expect(mainPage.url).to.contain("https://www.saucedemo.com/inventory.html");

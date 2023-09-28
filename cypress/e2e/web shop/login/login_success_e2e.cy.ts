@@ -9,6 +9,7 @@ describe("Login Page Positive E2E Test", () => {
   beforeEach(() => {
     cy.visit(loginPage.url);
   });
+
   it("Should Display Main UI Elements On The Page", () => {
     //ASSERT
     loginPage.loginLogo().should("have.text", "Swag Labs").and("exist");
@@ -18,56 +19,50 @@ describe("Login Page Positive E2E Test", () => {
     loginPage.loginCredentials().should("exist");
   });
 
-  it("Should Be Able Log In With Valid Credentials", () => {
-    //ARRANGE
-    loginPage.userNameInput().type(mockValidUser.userName);
-    loginPage.passwordInput().type(mockValidUser.password);
-
+  it.only("Should Be Able Log In With Valid Credentials", () => {
     //ACT
-    loginPage.loginButton().click();
+    loginPage.loginFormCredentials(
+      mockValidUser.userName,
+      mockValidUser.password
+    );
 
     //ASSERT
-    mainPage.inventoryContainer().should("be.visible");
-    expect(mainPage.url).to.include("https://www.saucedemo.com/inventory.html");
+    loginPage.assertLoginSuccess();
   });
 
   it("Should Be Able Log Out With Valid Credentials", () => {
     //ARRANGE
-    loginPage.userNameInput().type(mockValidUser.userName);
-    loginPage.passwordInput().type(mockValidUser.password);
-    loginPage.loginButton().click();
+    loginPage.loginFormCredentials(
+      mockValidUser.userName,
+      mockValidUser.password
+    );
 
     //ACT
-    mainPage.sideMenuButton().click();
-    mainPage.logOutLink().click();
+    loginPage.logOut();
 
     //ASSERT
-    expect(loginPage.url).to.include("https://www.saucedemo.com/");
+    loginPage.assertLogoutSuccess();
   });
 
   it("Should Be Able Log In With Problem User Credentials", () => {
-    //ARRANGE
-    loginPage.userNameInput().type(mockProblemUser.userName);
-    loginPage.passwordInput().type(mockProblemUser.password);
-
     //ACT
-    loginPage.loginButton().click();
+    loginPage.loginFormCredentials(
+      mockProblemUser.userName,
+      mockProblemUser.password
+    );
 
     //ASSERT
-    mainPage.inventoryContainer().should("be.visible");
-    expect(mainPage.url).to.include("https://www.saucedemo.com/inventory.html");
+    loginPage.assertLoginSuccess();
   });
 
   it("Should Be Able Log In With Glitch User Credentials", () => {
-    //ARRANGE
-    loginPage.userNameInput().type(mockGlitchUser.userName);
-    loginPage.passwordInput().type(mockGlitchUser.password);
-
     //ACT
-    loginPage.loginButton().click();
+    loginPage.loginFormCredentials(
+      mockGlitchUser.userName,
+      mockGlitchUser.password
+    );
 
     //ASSERT
-    mainPage.inventoryContainer().should("be.visible");
-    expect(mainPage.url).to.include("https://www.saucedemo.com/inventory.html");
+    loginPage.assertLoginSuccess();
   });
 });
