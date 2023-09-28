@@ -1,6 +1,8 @@
 class CheckoutPage {
+  // URL for the checkout page
   url = "https://www.saucedemo.com/checkout-step-one.html";
-  
+
+  // Selectors for various elements on the page
   firstNameInput() {
     return cy.get('[data-test="firstName"]');
   }
@@ -35,6 +37,18 @@ class CheckoutPage {
 
   cancelButton() {
     return cy.get('[data-test="cancel"]');
+  }
+
+  // Method to fill out the checkout form
+  fillOutCheckoutForm(firstName: string, lastName: string, postalCode: string) {
+    this.firstNameInput().type(firstName);
+    this.lastNameInput().type(lastName);
+    this.postalCodeInput().type(postalCode);
+  }
+
+  // Method to cancel the checkout process
+  cancelCheckout() {
+    this.cancelButton().click();
   }
 }
 
