@@ -1,9 +1,8 @@
-import { mockGlitchUser } from "../mock-user/mock-glitch-user";
-import { mockProblemUser } from "../mock-user/mock-problem-user";
-import { mockValidUser } from "../mock-user/mock-valid-user";
+import { mockGlitchUser } from "../../../support/mock-user/mock-glitch-user";
+import { mockProblemUser } from "../../../support/mock-user/mock-problem-user";
+import { mockValidUser } from "../../../support/mock-user/mock-valid-user";
 
-import { loginPage } from "../pages/login";
-import { mainPage } from "../pages/mainPage";
+import { loginPage } from "../../../support/pages/login";
 
 describe("Login Page Positive E2E Test", () => {
   beforeEach(() => {

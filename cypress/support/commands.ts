@@ -1,5 +1,5 @@
 // commands.ts
-import { loginPage } from "../e2e/web shop/pages/login";
+import { loginPage } from "./pages/login";
 declare global {
   namespace Cypress {
     interface Chainable {

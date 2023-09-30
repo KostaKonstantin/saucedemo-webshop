@@ -1,7 +1,7 @@
-import { mockInvalidUser } from "../mock-user/mock-invalid-user";
-import { mockLockedUser } from "../mock-user/mock-locked-user";
-import { mockValidUser } from "../mock-user/mock-valid-user";
-import { loginPage } from "../pages/login";
+import { mockInvalidUser } from "../../../support/mock-user/mock-invalid-user";
+import { mockLockedUser } from "../../../support/mock-user/mock-locked-user";
+import { mockValidUser } from "../../../support/mock-user/mock-valid-user";
+import { loginPage } from "../../../support/pages/login";
 
 describe("Login Page Negative E2E Test", () => {
   beforeEach(() => {

@@ -1,8 +1,8 @@
 import "../../../support/commands";
-import { mainPage } from "../pages/mainPage";
-import { cartPage } from "../pages/cart";
-import { checkoutPage } from "../pages/checkout";
-import { mockProblemUser } from "../mock-user/mock-problem-user";
+import { mainPage } from "../../../support/pages/mainPage";
+import { cartPage } from "../../../support/pages/cart";
+import { checkoutPage } from "../../../support/pages/checkout";
+import { mockProblemUser } from "../../../support/mock-user/mock-problem-user";
 
 describe("Products Standard User E2E Test", () => {
   beforeEach(() => {
