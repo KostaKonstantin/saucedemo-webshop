@@ -6,58 +6,59 @@ import { loginPage } from "../../../support/pages/login";
 
 describe("Login Page Positive E2E Test", () => {
   beforeEach(() => {
+    // ARRANGE: Visit the login page before each test
     cy.visit(loginPage.url);
   });
 
   it("Should Display Main UI Elements On The Page", () => {
-    //ASSERT
+    // ASSERT: Ensure that main UI elements are visible on the page
     loginPage.assertMainUIElementsVisibility();
   });
 
   it("Should Be Able Log In With Valid Credentials", () => {
-    //ACT
+    // ACT: Log in with valid user credentials
     loginPage.loginFormCredentials(
       mockValidUser.userName,
       mockValidUser.password
     );
 
-    //ASSERT
+    // ASSERT: Check for successful login
     loginPage.assertLoginSuccess();
   });
 
   it("Should Be Able Log Out With Valid Credentials", () => {
-    //ARRANGE
+    // ARRANGE: Log in first with valid credentials
     loginPage.loginFormCredentials(
       mockValidUser.userName,
       mockValidUser.password
     );
 
-    //ACT
+    // ACT: Log out
     loginPage.logOut();
 
-    //ASSERT
+    // ASSERT: Check for successful logout
     loginPage.assertLogoutSuccess();
   });
 
   it("Should Be Able Log In With Problem User Credentials", () => {
-    //ACT
+    // ACT: Log in with problem user credentials
     loginPage.loginFormCredentials(
       mockProblemUser.userName,
       mockProblemUser.password
     );
 
-    //ASSERT
+    // ASSERT: Check for successful login
     loginPage.assertLoginSuccess();
   });
 
   it("Should Be Able Log In With Glitch User Credentials", () => {
-    //ACT
+    // ACT: Log in with glitch user credentials
     loginPage.loginFormCredentials(
       mockGlitchUser.userName,
       mockGlitchUser.password
     );
 
-    //ASSERT
+    // ASSERT: Check for successful login
     loginPage.assertLoginSuccess();
   });
 });

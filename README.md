@@ -1,7 +1,9 @@
 # Cypress E2E Test Suite for Swag Labs Demo App
 This repository contains a suite of Cypress end-to-end (e2e) tests for the Swag Labs demo application. The tests cover three main parts of the application: Login, Products page, and Checkout. 
 
-In some of the tests you can find custom commands, custom methods, mock data, AAA pattern of testing and more. Not every single test is the same because I wanted to show how they can be approached with different styles.
+In some of the tests you can find custom commands, custom methods, mock data, AAA pattern of testing and more. 
+
+**Not every single test is the same because I wanted to show how they can be approached with different styles.**
 
 ## Prerequisites
 To run the tests, ensure you have the following prerequisites installed:
