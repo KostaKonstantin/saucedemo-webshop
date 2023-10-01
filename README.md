@@ -15,7 +15,7 @@ To run the tests, ensure you have the following prerequisites installed:
 1. Clone this repository to your local machine
 2. Navigate to the saucedemo-webshop directory -> `cd .\saucedemo-webshop\`
 3. Install the required dependencies with -> `npm install`
-4. Run the tests with -> `node_modules/.bin/cypress open`
+4. Run the tests with -> `npx cypress open`
 
 ## Project Structure
     saucedemo-webshop/ - Main directory
